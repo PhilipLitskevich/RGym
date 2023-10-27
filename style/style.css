@@ -456,6 +456,7 @@ body {
 	margin-top: 0;
 	position: relative;
 	top: calc(var(--index) * -5);
+	owerflow-x: hidden;
 }
 
 .section-welcom .container-big {
