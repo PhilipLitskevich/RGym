@@ -66,12 +66,14 @@ gsap.fromTo('.section-hero', { opacity: 1 }, {
 let itemsL = gsap.utils.toArray('.welcom__col:first-child .welcom__image');
 
 itemsL.forEach(item => {
-	gsap.fromTo(item, { x: -200 ,opacity: 0 }, {
+	gsap.fromTo(item, { x: -150 ,opacity: 0 }, {
 		x: 0,
 		opacity: 1,
 		scrollTrigger: {
 			trigger: item,
 			scrub: true,
+			start: "-850",
+			end: "0",
 		}
 	})
 })
@@ -84,6 +86,8 @@ itemsR.forEach(item => {
 		scrollTrigger: {
 			trigger: item,
 			scrub: true,
+			start: "-850",
+			end: "0",
 		}
 	})
 })
