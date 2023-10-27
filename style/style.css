@@ -456,7 +456,6 @@ body {
 	margin-top: 0;
 	position: relative;
 	top: calc(var(--index) * -5);
-	owerflow-x: hidden;
 }
 
 .section-welcom .container-big {
@@ -1090,6 +1089,7 @@ body {
 	.section-welcom .container-big {
 		display: flex;
 		flex-direction: column;
+		overflow-x: hidden;
 	}
 
 	.welcom__col:nth-child(2) {
