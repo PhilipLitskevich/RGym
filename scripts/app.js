@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin)
 
 import { useDynamicAdapt } from './dynamicAdapt.js'
 
@@ -44,48 +44,51 @@ const swiper = new Swiper('.popular-slider', {
 });
 
 if (ScrollTrigger.isTouch !==1){
-	ScrollSmoother.create({
-		wrapper: '.wrapper',
-		content: '.content',
-		smooth: 1.5,
-		effects: true,
-	})
+
+ScrollSmoother.create({
+	wrapper: '.wrapper',
+	content: '.content',
+	smooth: 1.5,
+	effects: true,
+})
 	
-	gsap.fromTo('.section-hero', { opacity: 1 }, {
-		opacity: 0,
+}
+
+gsap.fromTo('.section-hero', { opacity: 1 }, {
+	opacity: 0,
+	scrollTrigger: {
+		trigger: '.section-hero',
+		start: 'center',
+		end: '820',
+		scrub: true,
+	}
+})
+
+let itemsL = gsap.utils.toArray('.welcom__col:first-child .welcom__image');
+
+itemsL.forEach(item => {
+	gsap.fromTo(item, { x: -200 ,opacity: 0 }, {
+		x: 0,
+		opacity: 1,
 		scrollTrigger: {
-			trigger: '.section-hero',
-			start: 'center',
-			end: '820',
+			trigger: item,
 			scrub: true,
 		}
 	})
+})
+let itemsR = gsap.utils.toArray('.welcom__col:last-child .welcom__image');
 
-	let itemsL = gsap.utils.toArray('.welcom__col:first-child .welcom__image');
-
-	itemsL.forEach(item => {
-		gsap.fromTo(item, { x: -200 ,opacity: 0 }, {
-			x: 0,
-			opacity: 1,
-			scrollTrigger: {
-				trigger: item,
-				scrub: true,
-			}
-		})
+itemsR.forEach(item => {
+	gsap.fromTo(item, { x: 200 ,opacity: 0 }, {
+		x: 0,
+		opacity: 1,
+		scrollTrigger: {
+			trigger: item,
+			scrub: true,
+		}
 	})
-	let itemsR = gsap.utils.toArray('.welcom__col:last-child .welcom__image');
+})
 
-	itemsR.forEach(item => {
-		gsap.fromTo(item, { x: 200 ,opacity: 0 }, {
-			x: 0,
-			opacity: 1,
-			scrollTrigger: {
-				trigger: item,
-				scrub: true,
-			}
-		})
-	})
-}
 
 
 document.getElementById('menu-bar').onclick = function () {
@@ -97,7 +100,7 @@ document.getElementById('menu-bar').onclick = function () {
 let links = document.querySelectorAll('.scroll-link');
 for (let i = 0; i < links.length; i++) {
   links[i].onclick = function () {
-		document.getElementById(links[i].getAttribute("data-link")).scrollIntoView({ behavior: 'smooth' });
+		gsap.to(window, { duration: 1.5, scrollTo: `#${links[i].getAttribute("data-link")}` });
   }
 }
 
