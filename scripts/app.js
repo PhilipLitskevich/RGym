@@ -62,29 +62,29 @@ gsap.fromTo('.section-hero', { opacity: 1 }, {
 		end: '820',
 		scrub: true,
 	}
-	let itemsL = gsap.utils.toArray('.welcom__col:first-child .welcom__image');
-	
-	itemsL.forEach(item => {
-		gsap.fromTo(item, { x: -200 ,opacity: 0 }, {
-			x: 0,
-			opacity: 1,
-			scrollTrigger: {
-				trigger: item,
-				scrub: true,
-			}
-		})
+})
+let itemsL = gsap.utils.toArray('.welcom__col:first-child .welcom__image');
+
+itemsL.forEach(item => {
+	gsap.fromTo(item, { x: -200 ,opacity: 0 }, {
+		x: 0,
+		opacity: 1,
+		scrollTrigger: {
+			trigger: item,
+			scrub: true,
+		}
 	})
-	let itemsR = gsap.utils.toArray('.welcom__col:last-child .welcom__image');
-	
-	itemsR.forEach(item => {
-		gsap.fromTo(item, { x: 200 ,opacity: 0 }, {
-			x: 0,
-			opacity: 1,
-			scrollTrigger: {
-				trigger: item,
-				scrub: true,
-			}
-		})
+})
+let itemsR = gsap.utils.toArray('.welcom__col:last-child .welcom__image');
+
+itemsR.forEach(item => {
+	gsap.fromTo(item, { x: 200 ,opacity: 0 }, {
+		x: 0,
+		opacity: 1,
+		scrollTrigger: {
+			trigger: item,
+			scrub: true,
+		}
 	})
 })
 
