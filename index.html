@@ -11,6 +11,9 @@
 </head>
 
 <body>
+	<div class="next-wrapper">
+		<a class="scroll-link language-text go-up-btn" data-link="hero" data-lang="up"> Go Up</a>
+		<a class="scroll-link next-section-btn language-text" data-link="exercise" data-lang="next"> Next</a></div>
 	<div class="language-wrapper">
 		<a class="language-btn"> EN </a>
 	</div>
@@ -26,7 +29,7 @@
 				</a>
 			</li>
 			<li class="sidebar-items">
-				<a href="#" class="sidebar-links">
+				<a href="#" class="sidebar-links scroll-link prev-section-btn" data-link="footer">
 					<svg opacity="0.75" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25"
 						viewBox="0 0 24 24">
 						<path fill="white"
@@ -113,7 +116,7 @@
 				</div>
 			</header>
 			<main class="main">
-				<section class="section-hero">
+				<section class="section-hero next-section" id="hero">
 					<div class="container">
 						<h1 class="hero-title language-text" data-speed="1.3" data-lang="hero-title">
 							Making Different from other builders.
@@ -132,7 +135,7 @@
 					</div>
 				</section>
 
-				<section class="section-popular" id="exercise">
+				<section class="section-popular next-section" id="exercise">
 					<div class="container">
 						<div class="popular-info" data-speed="1.4">
 							<h2 class="popular-title language-text" data-lang="exercise">Popular Exercise</h2>
@@ -173,7 +176,7 @@
 					</div>
 				</section>
 
-				<section class="section-plans" id="about">
+				<section class="section-plans next-section" id="about">
 					<div class="container">
 						<h3 class="plans-title language-text" data-speed="1.3" data-lang="plans-title">The ultimate online online personal training plans</h3>
 						<p class="plans-text language-text"  data-lang="lorem-39">
@@ -184,7 +187,7 @@
 					</div>
 				</section>
 
-				<section class="section-personal" id="personal">
+				<section class="section-personal next-section" id="personal">
           <div class="container-big">
             <div class="personal__image-wrapper">
               <img src="./images/personal-1.jpg" alt="personal training" class="personal-image">
@@ -206,7 +209,7 @@
           </div>
         </section>
 
-				<section class="section-welcom" id="behind">
+				<section class="section-welcom next-section" id="behind">
           <div class="container-big">
             <div class="welcom__col">
               <img src="./images/welcom-1.jpg" alt="welcom" class="welcom__image">
@@ -231,14 +234,14 @@
           </div>
         </section>
 
-				<section class="section-subscribe" id="contact">
+				<section class="section-subscribe next-section" id="contact">
           <div class="container" data-speed="1.3">
             <h2 class="subscribe__title language-text" data-lang="subscribe">Subscribe to our newsletter</h2>
             <p class="subscribe__text language-text" data-lang="lorem-11">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dui neque.
             </p>
 
-            <form class="subscribe__form" >
+            <form class="subscribe__form">
               <input class="subscribe__input" type="email" placeholder="Enter Email">
               <button class="subscribe__button language-text" data-lang="submit">Submit</button>
             </form>
@@ -246,7 +249,7 @@
         </section>
 			</main> 
 
-				<footer class="footer">
+				<footer class="footer next-section" id="footer">
         <div class="container">
           <div class="footer__inner">
             <div class="footer__info">
