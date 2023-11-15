@@ -14,8 +14,8 @@ const swiper = new Swiper('.popular-slider', {
 	autoHeight: true,
 	loop: true,
 	autoplay: {
-	  delay: 1,
-	  disableOnInteraction: true
+		delay: 1,
+		disableOnInteraction: true
 	},
 	freeMode: true,
 	speed: 10000,
@@ -43,15 +43,16 @@ const swiper = new Swiper('.popular-slider', {
 
 });
 
-if (ScrollTrigger.isTouch !==1){
+if (ScrollTrigger.isTouch !== 1) {
 
-ScrollSmoother.create({
-	wrapper: '.wrapper',
-	content: '.content',
-	smooth: 1.5,
-	effects: true,
-})
-	
+	ScrollSmoother.create({
+		wrapper: '.wrapper',
+		content: '.content',
+		smooth: 1,
+		effects: true,
+
+	})
+
 }
 
 gsap.fromTo('.section-hero', { opacity: 1 }, {
@@ -61,12 +62,13 @@ gsap.fromTo('.section-hero', { opacity: 1 }, {
 		start: 'center',
 		end: '820',
 		scrub: true,
+
 	}
 })
 let itemsL = gsap.utils.toArray('.welcom__col:first-child .welcom__image');
 
 itemsL.forEach(item => {
-	gsap.fromTo(item, { x: -150 ,opacity: 0 }, {
+	gsap.fromTo(item, { x: -150, opacity: 0 }, {
 		x: 0,
 		opacity: 1,
 		scrollTrigger: {
@@ -80,7 +82,7 @@ itemsL.forEach(item => {
 let itemsR = gsap.utils.toArray('.welcom__col:last-child .welcom__image');
 
 itemsR.forEach(item => {
-	gsap.fromTo(item, { x: 200 ,opacity: 0 }, {
+	gsap.fromTo(item, { x: 200, opacity: 0 }, {
 		x: 0,
 		opacity: 1,
 		scrollTrigger: {
@@ -103,9 +105,16 @@ document.getElementById('menu-bar').onclick = function () {
 
 let links = document.querySelectorAll('.scroll-link');
 for (let i = 0; i < links.length; i++) {
-  links[i].onclick = function () {
-		gsap.to(window, { duration: 1.5, scrollTo: `#${links[i].getAttribute("data-link")}` });
-  }
+	links[i].onclick = function () {
+		gsap.to(window, {
+			duration: .5,
+			scrollTo: {
+				y: `#${links[i].getAttribute("data-link")}`,
+				offsetY: 100,
+				autoKill: true,
+			}
+		});
+	}
 }
 
 // Смена языка:
@@ -113,6 +122,14 @@ for (let i = 0; i < links.length; i++) {
 
 // База текстов:
 let allTexts = {
+	"next": {
+		"EN": 'Next',
+		"RU": 'Далее',
+	},
+	"up": {
+		"EN": 'Go Up',
+		"RU": 'Наверх',
+	},
 	"date": {
 		"EN": 'Mon - Fri : 8:00 am - 7:00 pm',
 		"RU": 'Пон - Пт : 8:00 - 19:00',
@@ -227,20 +244,50 @@ let allTexts = {
 const languageBtn = document.querySelector('.language-btn');
 let currentTexts = document.getElementsByClassName('language-text')
 
-languageBtn.onclick = function(e){
-let currentLanguge = e.target.innerText;
-let newLanguge = 'EN';
+languageBtn.onclick = function (e) {
+	let currentLanguge = e.target.innerText;
+	let newLanguge = 'EN';
 
-if (currentLanguge === 'EN') {
-	newLanguge = 'RU';
-} else if (newLanguge === 'RU'){
-	newLanguge = 'EN'
+	if (currentLanguge === 'EN') {
+		newLanguge = 'RU';
+	} else if (newLanguge === 'RU') {
+		newLanguge = 'EN'
+	}
+
+	e.target.innerText = newLanguge;
+
+	for (let i = 0; i < currentTexts.length; i++) {
+		let data = currentTexts[i].getAttribute('data-lang');
+		currentTexts[i].innerText = allTexts[data][newLanguge];
+	}
 }
 
-e.target.innerText = newLanguge;
+// Next btn:
 
-for (let i = 0; i < currentTexts.length; i++) {
-	let data = currentTexts[i].getAttribute('data-lang');
-	currentTexts[i].innerText = allTexts[data][newLanguge];
+const prevBtn = document.querySelector('.prev-section-btn')
+const nextBtn = document.querySelector('.next-section-btn')
+
+let sections = document.getElementsByClassName('next-section');
+console.log(sections)
+
+for (let i = 0; i < sections.length; i++) {
+
+	ScrollTrigger.create({
+		trigger: '#' + sections[i].getAttribute('id'),
+		start: "top+=20px bottom",
+		end: "bottom-=20px center-=50px",
+		// markers: { startColor: "green", endColor: "red", fontSize: "16px" },
+
+		onEnter: (self) => {
+			let nextSectionIndex
+			if (i + 1 < sections.length) {
+				nextSectionIndex = i + 1;
+			} else { nextSectionIndex = 0 }
+			nextBtn.setAttribute('data-link', sections[nextSectionIndex].getAttribute('id'))
+		},
+		onLeaveBack: (self) => {
+			nextBtn.setAttribute('data-link', sections[i].getAttribute('id'))
+		}
 	}
+	)
 }
